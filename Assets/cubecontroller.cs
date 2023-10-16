@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class cubecontroller : MonoBehaviour
 {
-	[SerializeField] float speed = 4;
+	
+	[SerializeField] float moveSpeed = 4;
 	private playerinputmanager input;
 	private CharacterController controller;
 	private Animator animator;
 	
+	[SerializeField] GameObject mainCam;
 	[SerializeField] Transform cameraFollowTarget;
 	float xRotation;
 	float yRotation;
@@ -24,12 +26,21 @@ public class cubecontroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		Vector3 targetDirection = new Vector3(input.move.x, 0, input.move.y);
-		Quaternion targetRotation  = Quaternion.LookRotation(targetDirection);
+		float speed = 0;
+		
+		Vector3 inputDir = new Vector3(input.move.x, 0, input.move.y);
+		float targetRotation  = 0;
 		if(input.move != Vector2.zero) {
-			transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 20 * Time.deltaTime);
+			
+			speed = moveSpeed;
+			
+			targetRotation = Quaternion.LookRotation(inputDir).eulerAngles.y + mainCam.transform.rotation.eulerAngles.y;
+			
+			Quaternion rotation = Quaternion.Euler(0, targetRotation, 0);
+			transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 20 * Time.deltaTime);
 		}
 		animator.SetFloat("speed", input.move.magnitude);
+		Vector3 targetDirection = Quaternion.Euler(0, targetRotation, 0) * Vector3.forward;
         controller.Move(targetDirection * speed * Time.deltaTime);
     }
 	
