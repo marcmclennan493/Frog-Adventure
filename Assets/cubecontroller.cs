@@ -6,6 +6,7 @@ public class cubecontroller : MonoBehaviour
 {
 	
 	[SerializeField] float moveSpeed = 4;
+	
 	private playerinputmanager input;
 	private CharacterController controller;
 	private Animator animator;
@@ -23,13 +24,14 @@ public class cubecontroller : MonoBehaviour
 		animator = GetComponentInChildren<Animator>();
     }
 
+
     // Update is called once per frame
     void Update()
     {
 		float speed = 0;
-		
 		Vector3 inputDir = new Vector3(input.move.x, 0, input.move.y);
 		float targetRotation  = 0;
+		
 		if(input.move != Vector2.zero) {
 			
 			speed = moveSpeed;
