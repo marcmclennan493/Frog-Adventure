@@ -50,6 +50,7 @@ public class cubecontroller : MonoBehaviour
 		CameraRotation();
 	}
 	
+	
 	void CameraRotation() {
 		xRotation += input.look.y;
 		yRotation += input.look.x;
