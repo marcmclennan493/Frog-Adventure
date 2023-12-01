@@ -10,6 +10,7 @@ public class cubecontroller : MonoBehaviour
 	private playerinputmanager input;
 	private CharacterController controller;
 	private Animator animator;
+	public Rigidbody rb;
 	
 	[SerializeField] GameObject mainCam;
 	[SerializeField] Transform cameraFollowTarget;
@@ -22,6 +23,7 @@ public class cubecontroller : MonoBehaviour
         input = GetComponent<playerinputmanager>();
 		controller = GetComponent<CharacterController>();
 		animator = GetComponentInChildren<Animator>();
+		rb = GetComponent<Rigidbody>();
     }
 
 
@@ -31,6 +33,7 @@ public class cubecontroller : MonoBehaviour
 		float speed = 0;
 		Vector3 inputDir = new Vector3(input.move.x, 0, input.move.y);
 		float targetRotation  = 0;
+		 
 		
 		if(input.move != Vector2.zero) {
 			
@@ -44,6 +47,11 @@ public class cubecontroller : MonoBehaviour
 		animator.SetFloat("speed", input.move.magnitude);
 		Vector3 targetDirection = Quaternion.Euler(0, targetRotation, 0) * Vector3.forward;
         controller.Move(targetDirection * speed * Time.deltaTime);
+		
+		if(Input.GetButtonDown("Jump")) {
+		rb.AddForce(new Vector3(0, 5, 0), ForceMode.Impulse);
+		}
+		
     }
 	
 	private void LateUpdate() {
