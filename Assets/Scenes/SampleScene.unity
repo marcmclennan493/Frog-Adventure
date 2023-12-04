@@ -1471,9 +1471,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  jump: {x: 0, y: 0, z: 0}
-  jumpForce: 2
-  isGrounded: 0
   mainCam: {fileID: 2125003929}
   cameraFollowTarget: {fileID: 679686374}
 --- !u!54 &1953747925
