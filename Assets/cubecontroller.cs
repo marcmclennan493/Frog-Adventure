@@ -14,7 +14,7 @@ public class cubecontroller : MonoBehaviour
 	private Animator animator;
     	private Vector3 jump;
     	private float jumpForce = 2.0f;
-   // 	public bool isGrounded;
+    	public bool isGrounded;
     	Rigidbody rb;
 	[SerializeField] GameObject mainCam;
 	[SerializeField] Transform cameraFollowTarget;
@@ -31,10 +31,10 @@ public class cubecontroller : MonoBehaviour
 		animator = GetComponentInChildren<Animator>();
     }
 	
-/*    	void OnCollisionEnter()
+    	void OnCollisionEnter()
     	{
     		isGrounded = true;
-    	}*/
+    	}
 
 
     // Update is called once per frame
@@ -59,9 +59,9 @@ public class cubecontroller : MonoBehaviour
 		    		if(Input.GetKeyDown(KeyCode.Space)){
     Debug.Log("shmump");
     			rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-    			/*isGrounded = false;*/
+    			isGrounded = false;
 			}
-		animator.SetFloat("speed", input.move.magnitude);
+	//	animator.SetFloat("speed", input.move.magnitude);
 		Vector3 targetDirection = Quaternion.Euler(0, targetRotation, 0) * Vector3.forward;
         controller.Move(targetDirection * speed * Time.deltaTime);
 		
