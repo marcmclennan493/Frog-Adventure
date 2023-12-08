@@ -12,8 +12,8 @@ public class cubecontroller : MonoBehaviour
 	private playerinputmanager input;
 	private CharacterController controller;
 	private Animator animator;
-    	private Vector3 jump;
-    	private float jumpForce = 2.0f;
+    	public Vector3 jump;
+    	public float jumpForce = 2.0f;
     	public bool isGrounded;
     	Rigidbody rb;
 	[SerializeField] GameObject mainCam;
@@ -26,6 +26,7 @@ public class cubecontroller : MonoBehaviour
     {
     		rb = GetComponent<Rigidbody>();
     		jump = new Vector3(0.0f, 2.0f, 0.0f);
+			
         input = GetComponent<playerinputmanager>();
 		controller = GetComponent<CharacterController>();
 		animator = GetComponentInChildren<Animator>();
