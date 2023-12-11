@@ -57,7 +57,7 @@ public class cubecontroller : MonoBehaviour
 			transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 20 * Time.deltaTime);
 		}
 		
-		    		if(Input.GetKeyDown(KeyCode.Space)){
+		    		if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
     Debug.Log("shmump");
     			rb.AddForce(jump * jumpForce, ForceMode.Impulse);
     			isGrounded = false;
