@@ -17,4 +17,5 @@ public class playerinputmanager : MonoBehaviour
 	void OnLook(InputValue value) {
 		look = value.Get<Vector2>();
 	}
+	
 }
