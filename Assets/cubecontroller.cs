@@ -83,6 +83,7 @@ public class cubecontroller : MonoBehaviour
 	}
 	
 }*/
+
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -153,3 +154,15 @@ public class CubeController : MonoBehaviour
         cameraFollowTarget.rotation = rotation;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
