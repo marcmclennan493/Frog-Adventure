@@ -91,6 +91,7 @@ public class CubeController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 4;
     [SerializeField] private float jumpForce = 8;
+    [SerializeField] private float autoStepThreshold = 0.5f; // Adjust this value based on your needs
     [SerializeField] private Transform cameraFollowTarget;
 
     private playerinputmanager input;
@@ -128,7 +129,7 @@ public class CubeController : MonoBehaviour
         {
             Debug.Log("Jump");
             velocity.y = Mathf.Sqrt(jumpForce * -2f * Physics.gravity.y);
-			animator.SetTrigger("JumpTrigger");
+            animator.SetTrigger("JumpTrigger");
         }
 
         // Apply gravity
@@ -136,6 +137,9 @@ public class CubeController : MonoBehaviour
 
         Vector3 targetDirection = Quaternion.Euler(0, targetRotation, 0) * Vector3.forward;
         Vector3 move = targetDirection.normalized * speed * Time.deltaTime;
+
+        // Check for small ridges and adjust the character's position
+        CheckForAutoStep();
 
         // Move the character controller
         controller.Move(move + velocity * Time.deltaTime);
@@ -154,7 +158,41 @@ public class CubeController : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(xRotation, yRotation, 0);
         cameraFollowTarget.rotation = rotation;
     }
+
+void CheckForAutoStep()
+{
+    // Raycast to check the height difference in front of the character
+    RaycastHit hit;
+    float raycastDistance = 2.0f; // Adjust this value based on your needs
+    float maxHeightForAutoStep = 2.0f; // Adjust this value based on your needs
+
+    if (Physics.Raycast(transform.position + Vector3.up * 0.2f, transform.forward, out hit, raycastDistance))
+    {
+        Collider collider = hit.collider;
+
+        if (collider != null)
+        {
+            // Check if the height difference is within the threshold and the object's height is below the limit
+            if (hit.point.y - collider.bounds.min.y <= autoStepThreshold && collider.bounds.size.y <= maxHeightForAutoStep)
+            {
+                // Reset vertical velocity when grounded to allow auto-stepping again
+                if (controller.isGrounded)
+                {
+                    velocity.y = 0f;
+                }
+
+                // Move the character up smoothly
+                controller.Move(Vector3.up * (hit.point.y - transform.position.y));
+            }
+        }
+    }
 }
+
+
+
+
+}
+
 
 
 
