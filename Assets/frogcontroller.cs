@@ -101,8 +101,6 @@ public class CubeController : MonoBehaviour
     private float yRotation;
     private Vector3 velocity; // For handling vertical velocity
 
-    private bool isMouseButtonDown = false;
-
     void Start()
     {
         input = GetComponent<playerinputmanager>();
@@ -120,7 +118,7 @@ public class CubeController : MonoBehaviour
         {
             speed = moveSpeed;
 
-            targetRotation = Mathf.Atan2(inputDir.x, inputDir.z) * Mathf.Rad2Deg;
+            targetRotation = Mathf.Atan2(inputDir.x, inputDir.z) * Mathf.Rad2Deg + cameraFollowTarget.eulerAngles.y;
             Quaternion rotation = Quaternion.Euler(0, targetRotation, 0);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 20 * Time.deltaTime);
         }
@@ -130,6 +128,7 @@ public class CubeController : MonoBehaviour
         {
             Debug.Log("Jump");
             velocity.y = Mathf.Sqrt(jumpForce * -2f * Physics.gravity.y);
+			animator.SetTrigger("JumpTrigger");
         }
 
         // Apply gravity
@@ -140,12 +139,11 @@ public class CubeController : MonoBehaviour
 
         // Move the character controller
         controller.Move(move + velocity * Time.deltaTime);
+    }
 
-        // Rotate the character only when the left mouse button is held down
-        if (Input.GetMouseButton(0))
-        {
-            CameraRotation();
-        }
+    private void LateUpdate()
+    {
+        CameraRotation();
     }
 
     void CameraRotation()
@@ -154,8 +152,7 @@ public class CubeController : MonoBehaviour
         yRotation += input.look.x;
         xRotation = Mathf.Clamp(xRotation, -30, 70);
         Quaternion rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        transform.rotation = rotation; // Rotate the character
-        cameraFollowTarget.rotation = rotation; // Rotate the camera follow target
+        cameraFollowTarget.rotation = rotation;
     }
 }
 
