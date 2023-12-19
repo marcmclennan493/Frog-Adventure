@@ -152,7 +152,7 @@ public class CubeController : MonoBehaviour
 
     void CameraRotation()
     {
-        xRotation += input.look.y;
+        xRotation += -input.look.y;
         yRotation += input.look.x;
         xRotation = Mathf.Clamp(xRotation, -30, 70);
         Quaternion rotation = Quaternion.Euler(xRotation, yRotation, 0);
