@@ -20,4 +20,18 @@ public class playerinputmanager : MonoBehaviour
 		}
 	}
 	
+    void Update()
+    {
+        // Check for the Escape key press
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            // Quit the application
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
+    }
+	
 }

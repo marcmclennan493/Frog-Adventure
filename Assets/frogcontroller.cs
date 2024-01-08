@@ -93,6 +93,8 @@ public class CubeController : MonoBehaviour
     [SerializeField] private float jumpForce = 8;
     [SerializeField] private float autoStepThreshold = 0.5f; // Adjust this value based on your needs
     [SerializeField] private Transform cameraFollowTarget;
+	[SerializeField] private GameObject deathZone;
+
 
     private playerinputmanager input;
     private CharacterController controller;
@@ -101,12 +103,15 @@ public class CubeController : MonoBehaviour
     private float xRotation;
     private float yRotation;
     private Vector3 velocity; // For handling vertical velocity
+	private Vector3 respawnPosition = new Vector3(0f, 2f, 0f); // Adjust the values based on your desired respawn position
+
 
     void Start()
     {
         input = GetComponent<playerinputmanager>();
         controller = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
+		controller.detectCollisions = true;
     }
 
     void Update()
@@ -143,6 +148,12 @@ public class CubeController : MonoBehaviour
 
         // Move the character controller
         controller.Move(move + velocity * Time.deltaTime);
+		
+		    if (transform.position.y < -35f) // Adjust the threshold based on your map's dimensions
+    {
+        DieAndRespawn();
+    }
+		
     }
 
     private void LateUpdate()
@@ -186,6 +197,12 @@ void CheckForAutoStep()
             }
         }
     }
+}
+
+
+void DieAndRespawn()
+{
+	transform.position = respawnPosition;
 }
 
 

@@ -15,7 +15,9 @@ public class playerinputmanager : MonoBehaviour
 	}
 	
 	void OnLook(InputValue value) {
+		if (Input.GetMouseButton(0)){
 		look = value.Get<Vector2>();
+		}
 	}
 	
 }

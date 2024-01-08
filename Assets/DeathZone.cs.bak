@@ -1,0 +1,11 @@
+private void OnControllerColliderHit(ControllerColliderHit hit)
+{
+    Debug.Log("Collision detected with: " + hit.collider.gameObject.name);
+
+    // Check if the object colliding with the death zone has the "Player" tag
+    if (hit.collider.CompareTag("Player"))
+    {
+        // Call a method to handle player death (e.g., restart the game)
+        PlayerDeath();
+    }
+}
