@@ -22,10 +22,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -92,27 +90,27 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1574}
+      Script: {instanceID: 1578}
     - Class: 114
-      Script: {instanceID: 2654}
+      Script: {instanceID: 2658}
     - Class: 114
-      Script: {instanceID: 2728}
+      Script: {instanceID: 2732}
     - Class: 114
-      Script: {instanceID: 2798}
+      Script: {instanceID: 2802}
     - Class: 114
-      Script: {instanceID: 3098}
+      Script: {instanceID: 3102}
     - Class: 114
-      Script: {instanceID: 3968}
+      Script: {instanceID: 3972}
     - Class: 114
-      Script: {instanceID: 5118}
+      Script: {instanceID: 5122}
     - Class: 114
-      Script: {instanceID: 6110}
+      Script: {instanceID: 6114}
     - Class: 114
-      Script: {instanceID: 6688}
+      Script: {instanceID: 6692}
     - Class: 114
-      Script: {instanceID: 8838}
+      Script: {instanceID: 8846}
     - Class: 114
-      Script: {instanceID: 8842}
+      Script: {instanceID: 8850}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 137
@@ -1445,4 +1443,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/chris/Desktop/frog adventure/Frog Adventure.exe
+  playerPath: C:/Users/marcmclennan/Desktop/Frog Adventure v.1.5/Frog Adventure.exe

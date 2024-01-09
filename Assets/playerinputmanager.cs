@@ -5,20 +5,25 @@ using UnityEngine.InputSystem;
 
 public class playerinputmanager : MonoBehaviour
 {
-	
-	public Vector2 move;
-	public Vector2 look;
-	
-	void OnMove(InputValue value)
-	{
-		move = value.Get<Vector2>();
-	}
-	
-	void OnLook(InputValue value) {
-		if (Input.GetMouseButton(0)){
-		look = value.Get<Vector2>();
-		}
-	}
+    public Vector2 move;
+    public Vector2 look;
+
+    void OnMove(InputValue value)
+    {
+        move = value.Get<Vector2>();
+    }
+
+    void OnLook(InputValue value)
+    {
+        if (Mouse.current.leftButton.isPressed)
+        {
+            look = value.Get<Vector2>();
+        }
+        else
+        {
+            look = Vector2.zero;
+        }
+    }
 	
     void Update()
     {
